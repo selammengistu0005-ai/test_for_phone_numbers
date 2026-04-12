@@ -1,63 +1,64 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="light">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Unity Health | Professional Hospital Portal</title>
-    </head>
+    <title>City Care Hospital | Professional Portal</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
 <body>
 
     <header>
         <nav class="navbar">
-            <div class="logo">Unity<span>Health</span></div>
+            <div class="logo">
+                <i class="fas fa-hospital-alt"></i> City<span>Care</span>
+            </div>
+            
             <ul class="nav-links">
                 <li><a href="#home">Home</a></li>
                 <li><a href="#services">Services</a></li>
                 <li><a href="#contact">Contact</a></li>
             </ul>
-            <div class="header-actions">
-                <button id="theme-toggle" class="icon-btn" aria-label="Toggle Dark Mode">
-                    <span id="theme-icon">🌙</span>
+
+            <div class="nav-actions">
+                <button id="theme-toggle" class="icon-btn" title="Toggle Theme">
+                    <i class="fas fa-moon"></i>
                 </button>
-                <button id="nav-login-btn" class="btn-primary">Login</button>
+                
+                <button id="login-btn" class="btn-primary">Login</button>
             </div>
         </nav>
     </header>
 
-    <main>
-        <section class="hero" id="home">
-            <div class="hero-content">
-                <h1>Modern Healthcare <br>at Your Fingertips</h1>
-                <p>Access your medical records and book appointments securely using your mobile number.</p>
-                <button id="hero-login-btn" class="btn-large">Access Patient Portal</button>
-            </div>
-        </main>
+    <main id="home">
+        <section class="hero">
+            <h1>Expert Medical Care, <br>Just a Click Away.</h1>
+            <p>Access your medical records and book appointments securely using your mobile number.</p>
+        </section>
+    </main>
 
-    <div id="login-modal" class="modal-overlay">
+    <div id="login-modal" class="modal">
         <div class="modal-content">
-            <button class="close-modal" id="close-modal">&times;</button>
+            <span class="close-modal">&times;</span>
             <h2>Patient Login</h2>
             <p>Please enter your Ethiopian phone number to continue.</p>
             
             <form id="login-form">
                 <div class="input-group">
                     <label for="phone">Phone Number</label>
-                    <div class="phone-input-container">
-                        <span class="country-code">+251</span>
-                        <input 
-                            type="tel" 
-                            id="phone" 
-                            placeholder="911234567" 
-                            maxlength="9" 
-                            required
-                        >
+                    <div class="phone-input-wrapper">
+                        <span class="flag-icon">🇪🇹</span>
+                        <span class="prefix">+251</span>
+                        <input type="tel" id="phone" placeholder="911223344" maxlength="9" required>
                     </div>
-                    <small class="helper-text">Format: 9XXXXXXXX</small>
+                    <small id="error-msg">Please enter a valid 9-digit number</small>
                 </div>
-                <button type="submit" class="btn-block">Send OTP</button>
+                <button type="submit" class="btn-submit">Send Verification Code</button>
             </form>
         </div>
     </div>
 
+    <script src="script.js"></script>
 </body>
 </html>
