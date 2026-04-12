@@ -5,6 +5,7 @@ const loginModal = document.getElementById('login-modal');
 const closeModal = document.querySelector('.close-modal');
 const loginForm = document.getElementById('login-form');
 const phoneInput = document.getElementById('phone');
+const nameInput = document.getElementById('full-name');
 const errorMsg = document.getElementById('error-msg');
 
 // 2. THEME TOGGLE LOGIC
@@ -39,27 +40,28 @@ window.addEventListener('click', (e) => {
 loginForm.addEventListener('submit', (e) => {
     e.preventDefault();
     
+    const fullName = nameInput.value.trim();
     const phoneNumber = phoneInput.value.trim();
-    
-    /* ETHIOPIAN NUMBER RULES:
-       - Since +251 is already a prefix in our HTML...
-       - Valid input starts with 7 or 9 (for mobile)
-       - Total 9 digits (e.g., 911223344)
-    */
     const ethioRegex = /^(7|9)\d{8}$/;
 
+    // Basic Name Validation: Check if it's at least 2 characters
+    if (fullName.length < 2) {
+        alert("Please enter your full name.");
+        nameInput.focus();
+        return;
+    }
+
     if (ethioRegex.test(phoneNumber)) {
-        // SUCCESS
         errorMsg.style.display = 'none';
         phoneInput.style.borderColor = 'var(--primary-color)';
         
         const fullNumber = "+251" + phoneNumber;
-        alert(`Verification code sent to: ${fullNumber}`);
         
-        // Here you would typically call your backend API
-        console.log("Proceeding with:", fullNumber);
+        // Success Message including the Name
+        alert(`Thank you, ${fullName}. A verification code has been sent to ${fullNumber}`);
+        
+        console.log("Data:", { name: fullName, phone: fullNumber });
     } else {
-        // FAIL
         errorMsg.style.display = 'block';
         phoneInput.style.borderColor = 'var(--error-color)';
         phoneInput.focus();
