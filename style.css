@@ -161,6 +161,33 @@ body {
     padding-left: 5px;
 }
 
+/* NEW NAME INPUT STYLING */
+.name-input-wrapper {
+    display: flex;
+    align-items: center;
+    border: 2px solid var(--input-border);
+    border-radius: 8px;
+    padding: 0.5rem;
+    margin-top: 10px;
+    margin-bottom: 15px; /* Adds space between Name and Phone */
+}
+
+.name-input-wrapper input {
+    border: none;
+    outline: none;
+    background: transparent;
+    color: var(--text-color);
+    font-size: 1.1rem;
+    width: 100%;
+}
+
+/* Update to ensure labels have enough breathing room */
+.input-group label {
+    font-weight: 600;
+    font-size: 0.9rem;
+    color: var(--primary-color);
+}
+
 .prefix {
     font-weight: bold;
     padding-right: 8px;
