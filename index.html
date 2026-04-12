@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Unity Health | Professional Hospital Portal</title>
+    </head>
+<body>
+
+    <header>
+        <nav class="navbar">
+            <div class="logo">Unity<span>Health</span></div>
+            <ul class="nav-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#services">Services</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+            <div class="header-actions">
+                <button id="theme-toggle" class="icon-btn" aria-label="Toggle Dark Mode">
+                    <span id="theme-icon">🌙</span>
+                </button>
+                <button id="nav-login-btn" class="btn-primary">Login</button>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <section class="hero" id="home">
+            <div class="hero-content">
+                <h1>Modern Healthcare <br>at Your Fingertips</h1>
+                <p>Access your medical records and book appointments securely using your mobile number.</p>
+                <button id="hero-login-btn" class="btn-large">Access Patient Portal</button>
+            </div>
+        </main>
+
+    <div id="login-modal" class="modal-overlay">
+        <div class="modal-content">
+            <button class="close-modal" id="close-modal">&times;</button>
+            <h2>Patient Login</h2>
+            <p>Please enter your Ethiopian phone number to continue.</p>
+            
+            <form id="login-form">
+                <div class="input-group">
+                    <label for="phone">Phone Number</label>
+                    <div class="phone-input-container">
+                        <span class="country-code">+251</span>
+                        <input 
+                            type="tel" 
+                            id="phone" 
+                            placeholder="911234567" 
+                            maxlength="9" 
+                            required
+                        >
+                    </div>
+                    <small class="helper-text">Format: 9XXXXXXXX</small>
+                </div>
+                <button type="submit" class="btn-block">Send OTP</button>
+            </form>
+        </div>
+    </div>
+
+</body>
+</html>
