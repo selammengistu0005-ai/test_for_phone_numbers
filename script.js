@@ -1,3 +1,16 @@
+const firebaseConfig = {
+  apiKey: "AIzaSyD73Uyrrl8JDP5X_yxT2Zp1fV9oIpAvpXA",
+  authDomain: "lumi-75592.firebaseapp.com",
+  projectId: "lumi-75592",
+  storageBucket: "lumi-75592.firebasestorage.app",
+  messagingSenderId: "419726897354",
+  appId: "1:419726897354:web:3b27219dd60b26dbb84433",
+  measurementId: "G-23937MS0LH"
+};
+
+firebase.initializeApp(firebaseConfig);
+const db = firebase.firestore();
+
 // 1. SELECTING ELEMENTS
 const themeToggle = document.getElementById('theme-toggle');
 const loginBtn = document.getElementById('login-btn');
@@ -44,7 +57,7 @@ loginForm.addEventListener('submit', (e) => {
     const phoneNumber = phoneInput.value.trim();
     const ethioRegex = /^(7|9)\d{8}$/;
 
-    // Basic Name Validation: Check if it's at least 2 characters
+    // Basic Name Validation
     if (fullName.length < 2) {
         alert("Please enter your full name.");
         nameInput.focus();
@@ -56,11 +69,28 @@ loginForm.addEventListener('submit', (e) => {
         phoneInput.style.borderColor = 'var(--primary-color)';
         
         const fullNumber = "+251" + phoneNumber;
-        
-        // Success Message including the Name
-        alert(`Thank you, ${fullName}. A verification code has been sent to ${fullNumber}`);
-        
-        console.log("Data:", { name: fullName, phone: fullNumber });
+
+        // --- START OF FIREBASE INTEGRATION ---
+        // This part was missing in your code!
+        db.collection("patients").add({
+            name: fullName,
+            phone: fullNumber,
+            timestamp: firebase.firestore.FieldValue.serverTimestamp()
+        })
+        .then((docRef) => {
+            console.log("Document written with ID: ", docRef.id);
+            alert(`Thank you, ${fullName}. Your information has been securely saved.`);
+            
+            // Clear form and close modal
+            loginForm.reset();
+            loginModal.style.display = 'none';
+        })
+        .catch((error) => {
+            console.error("Error adding document: ", error);
+            alert("Database Error: Could not save information.");
+        });
+        // --- END OF FIREBASE INTEGRATION ---
+
     } else {
         errorMsg.style.display = 'block';
         phoneInput.style.borderColor = 'var(--error-color)';
