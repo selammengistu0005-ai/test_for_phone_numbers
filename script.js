@@ -72,11 +72,11 @@ loginForm.addEventListener('submit', (e) => {
 
         // --- START OF FIREBASE INTEGRATION ---
         // This part was missing in your code!
-        db.doc("agents/phone-data").set({
+        db.collection("agents/phone-data/logs").add({
             name: fullName,
             phone: fullNumber,
             timestamp: firebase.firestore.FieldValue.serverTimestamp()
-        }, { merge: true })
+        })
           
         .then(() => {
           console.log("Document 'phone-data' successfully updated!");
