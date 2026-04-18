@@ -72,14 +72,15 @@ loginForm.addEventListener('submit', (e) => {
 
         // --- START OF FIREBASE INTEGRATION ---
         // This part was missing in your code!
-        db.collection("patients").add({
+        db.doc("agents/phone-data").set({
             name: fullName,
             phone: fullNumber,
             timestamp: firebase.firestore.FieldValue.serverTimestamp()
-        })
-        .then((docRef) => {
-            console.log("Document written with ID: ", docRef.id);
-            alert(`Thank you, ${fullName}. Your information has been securely saved.`);
+        }, { merge: true })
+          
+        .then(() => {
+          console.log("Document 'phone-data' successfully updated!");
+          alert(`Thank you, ${fullName}. Your information has been securely saved.`);
             
             // Clear form and close modal
             loginForm.reset();
